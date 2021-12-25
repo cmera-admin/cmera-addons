@@ -464,20 +464,21 @@ EOF;
         return true;
     }
 }
-
 /**
  * 判断文件或目录是否有写的权限
  */
-function is_really_writable($file)
-{
-    if (DIRECTORY_SEPARATOR == '/' and @ ini_get("safe_mode") == false) {
-        return is_writable($file);
+if(!function_exists('is_really_writable')){
+    function is_really_writable($file)
+    {
+        if (DIRECTORY_SEPARATOR == '/' and @ ini_get("safe_mode") == false) {
+            return is_writable($file);
+        }
+        if (!is_file($file) or ($fp = @fopen($file, "r+")) === false) {
+            return false;
+        }
+        fclose($fp);
+        return true;
     }
-    if (!is_file($file) or ($fp = @fopen($file, "r+")) === false) {
-        return false;
-    }
-    fclose($fp);
-    return true;
 }
 
 /**
