@@ -361,7 +361,7 @@ class FormHelper
                     <div class="layui-input-block">
                     <div class="tags" >
                         <input type="hidden" name="' . $name . '" value="' . $value . '" />
-                        <input '.self::addstyle($options). '  class=". self::addClass($options) ." id="' . $id . '" lay-filter="tags" type="text" placeholder="' . lang("Space To Generate Tags") . '" ' . self::filter($options) . self::readonlyOrdisabled($options) . '/>
+                         <input '.self::addstyle($options). '  class="'. self::addClass($options) .'" id="' . $id . '" lay-filter="tags" type="text" placeholder="' . lang("Space To Generate Tags") . '" ' . self::filter($options) . self::readonlyOrdisabled($options) . '/>
                     </div>
                     </div>
                 </div>';
@@ -383,7 +383,7 @@ class FormHelper
         $str = '<div class="layui-form-item">
                     <label class="layui-form-label ' . self::labelRequire($options) . '">' . lang($label) . '</label>
                     <div class="layui-input-block">
-                        <input '.self::addstyle($options). '  class=". self::addClass($options) ." type="hidden" name="' . $name . '"  value="' . $value . '"' . self::filter($options) . self::readonlyOrdisabled($options) . '/>
+                        <input '.self::addstyle($options). '  class="'. self::addClass($options) .'" type="hidden" name="' . $name . '"  value="' . $value . '"' . self::filter($options) . self::readonlyOrdisabled($options) . '/>
                           <div id="' . $id . '" lay-filter="colorPicker"></div>
                     </div>
                 </div>';
@@ -476,7 +476,7 @@ class FormHelper
                     <label class="layui-form-label ">区域</label>
                     <div class="layui-input-block">
                         <input type="hidden" name="' . $name . '" value="" />
-                        <div '.self::addstyle($options). '  class=". self::addClass($options) ." id="' . $id . '" name="' . $name . '" lay-filter="regionCheck">
+                        <div '.self::addstyle($options). '  class="'. self::addClass($options) .'" id="' . $id . '" name="' . $name . '" lay-filter="regionCheck">
                         </div>
                     </div>
                 </div>';
@@ -503,9 +503,15 @@ class FormHelper
          <label class="layui-form-label ' . self::labelRequire($options) . ' ">' . lang(Str::title($label)) . '</label>
          <div class="layui-input-block">';
         if ($type == 1) {
+            //百度。quill wangeditor ckeditor,editormd
+            $textarea = '';
+            if(!empty($options['textarea'])){
+                $textarea ='<textarea  name="' . $name . '" data-path="'.$path.'"  '.self::verify($options) . '>'   .  $value  . '</textarea>';
+            }
             //百度。quill wangeditor ckeditor
             $str .= '<div data-value="'.htmlentities($value).'" id="' . $id . '" name="' . $name . '" 
-            data-editor="' . $type . '" lay-filter="editor" data-path="'.$path.'" data-height="'.$height.'" type="text/plain" ></div>';
+             data-editor="' . $type . '" lay-filter="editor" data-path="'.$path.'" data-height="'.$height.'" type="text/plain" >
+          '.    $textarea   .'  </div>';
         } else {
             //LAYEDIT  Ckeditor
             $str .= '<textarea id="' . $id . '" name="' . $name . '" data-path="'.$path.'" data-editor="' . $type . '" lay-verify="layedit" lay-filter="editor" type="text/plain">'.$value.'</textarea>';
