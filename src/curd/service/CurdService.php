@@ -90,7 +90,7 @@ class CurdService
         $this->database = Config::get('database.connections' . '.' . Config::get('database.default') . '.database');
         $this->dir = __DIR__;
         $this->rootPath = root_path();
-        $this->tplPath = $this->rootPath . 'vendor' . DS . 'cmeraadmin'. DS . 'cmera-addons' . DS . 'src' . DS . 'curd'  . DS . 'tpl' . DS ;
+        $this->tplPath = $this->rootPath . 'vendor' . DS . 'cmera-admin'. DS . 'cmera-addons' . DS . 'src' . DS . 'curd'  . DS . 'tpl' . DS ;
         return $this;
     }
     /**
